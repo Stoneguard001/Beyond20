@@ -41,7 +41,7 @@ class Monster extends CharacterBase {
 
         this._stat_block = stat_block;
         if (this.type() != "Creature" && this.type() != "Extra-Vehicle") {
-            $(".ct-beyond20-settings-button").remove();
+            stat_block.find(".ct-beyond20-settings-button").remove();
             const quick_settings = E.div({ class: "ct-beyond20-settings-button", style: "background-color: rgba(0, 0, 0, 0.1)" },
                 E.img({ class: "ct-beyond20-settings", src: chrome.extension.getURL("images/icons/icon32.png"), style: "vertical-align: top;" }),
                 E.span({ class: "ct-beyond20-settings-button-label mon-stat-block__tidbit mon-stat-block__tidbit-label", style: "font-size: 28px; margin: 5px;" }, "Beyond 20")
@@ -270,7 +270,7 @@ class Monster extends CharacterBase {
     }
 
     parseAttackInfo(description) {
-        const m = description.match(/(Melee|Ranged)(?: Weapon| Spell)? Attack:.*?(\+[0-9]+) to hit.*?, (?:reach|ranged?) (.*?)(?:,.*?)?\./)
+        const m = description.match(/(Melee|Ranged)(?: Weapon| Spell)? Attack:.*?(\+[0-9]+) to hit.*?, (?:reach |ranged? |Gibletish )?(.*?)(?:,.*?)?\./)
         if (m)
             return m.slice(1, 4);
         else
@@ -381,7 +381,8 @@ class Monster extends CharacterBase {
                 action_name = action_name.slice(0, -1);
             //console.log("Action name: ", action_name);
             if (add_dice) {
-                const description = descriptionToString(action);
+                let description = descriptionToString(action);
+                description = description.replace(/−/g, "-");
                 const roll_properties = this.buildAttackRoll(action_name, description);
                 if (roll_properties) {
                     const id = addRollButton(this, () => {

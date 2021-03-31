@@ -167,6 +167,10 @@ function buildAttackRoll(character, attack_source, name, description, properties
                     }
                 }
             }
+            if (roll_properties.name === "Blade of Disaster")
+                crit_damages[0] = damagesToCrits(character, ["8d12"])[0];
+            if (roll_properties.name === "Jim’s Magic Missile")
+                crit_damages[0] = damagesToCrits(character, ["3d4"])[0];
             if (brutal > 0) {
                 const rule = parseInt(character.getGlobalSetting("critical-homebrew", CriticalRules.PHB));
                 let highest_dice = 0;
@@ -562,9 +566,9 @@ function beyond20SendMessageFailure(character, response) {
     } else if (response.error) {
         alertify.error("<strong>Beyond 20 : </strong>" + response.error);
     }
-    for (const key in key_modifiers)
-        key_modifiers[key] = false;
-    updateRollTypeButtonClasses();
-    updateToggles();
+    if (settings['sticky-hotkeys']) {
+        // FIXME: This could reset a key that is being held which the user may want to keep enabled
+        resetKeyModifiers();
+    }
 }
 

@@ -10,5 +10,6 @@ pyj/node_modules/
 node_modules/
 .idea/
 build/
-upstream.cmd
 dist/
+.gitignore
+upstream.cmd

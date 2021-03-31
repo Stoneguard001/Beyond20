@@ -109,16 +109,16 @@ function populateCharacter(response) {
             e = createHTMLOption("rogue-sneak-attack", false, character_settings);
             options.append(e);
         }
-        if (response["class-features"].includes("Disciple of Life")) {
-            e = createHTMLOption("cleric-disciple-life", false, character_settings);
-            options.append(e);
-        }
         if (response["class-features"].includes("Jack of All Trade")) {
             e = createHTMLOption("bard-joat", false, character_settings);
             options.append(e);
         }
         if (response["class-features"].includes("Remarkable Athlete")) {
             e = createHTMLOption("champion-remarkable-athlete", false, character_settings);
+            options.append(e);
+        }
+        if (response["class-features"].includes("Favored Foe")) {
+            e = createHTMLOption("ranger-favored-foe", false, character_settings);
             options.append(e);
         }
         if (response["feats"].includes("Sharpshooter")) {
@@ -220,6 +220,7 @@ function populateCharacter(response) {
         }
         if (response["actions"].includes("Channel Divinity: Sacred Weapon")) {
             e = createHTMLOption("paladin-sacred-weapon", false, character_settings);
+            options.append(e);
         }
         if (response["class-features"].includes("Blessed Strikes")) {
             e = createHTMLOption("cleric-blessed-strikes", false, character_settings);
@@ -247,6 +248,10 @@ function populateCharacter(response) {
         }
         if (response["class-features"].includes("Genie’s Vessel")) {
             e = createHTMLOption("genies-vessel", false, character_settings);
+            options.append(e);
+        }
+        if (response["class-features"].includes("Empowered Evocation")) {
+            e = createHTMLOption("empowered-evocation", false, character_settings);
             options.append(e);
         }
 

@@ -183,6 +183,13 @@ const options_list = {
         // callbacks will be added after the functions are defined
     },
 
+    "sticky-hotkeys": {
+        "title": "Sticky Hotkeys: no need to hold the button",
+        "description": "Allows you to press a hotkey instead of holding it to toggle the assigned ability for the next roll.",
+        "type": "bool",
+        "default": false
+    },
+
     "roll20-template": {
         "title": "Roll20 Character Sheet Setting",
         "description": "Select the Character Sheet Template that you use in Roll20\n" +
@@ -463,12 +470,6 @@ const character_settings = {
         "type": "bool",
         "default": true
     },
-    "cleric-disciple-life": {
-        "title": "Cleric: Life Domain: Disciple of Life",
-        "description": "Send Disciple of Life healing bonus",
-        "type": "bool",
-        "default": true
-    },
     "druid-symbiotic-entity": {
         "title": "Druid: Circle of Spores: Symbiotic Entity",
         "description": "Your symbiotic entity lends its power to your melee weapon strikes.",
@@ -499,6 +500,12 @@ const character_settings = {
         "type": "bool",
         "default": true
     },
+    "paladin-invincible-conqueror": {
+        "title": "Paladin: Oath of Conquest: Invincible Conqueror",
+        "description": "You can harness extraordinary martial prowess for 1 minute.",
+        "type": "bool",
+        "default": false
+    },
     "paladin-sacred-weapon": {
         "title": "Paladin: Oath of Devotion: Sacred Weapon",
         "description": "Your charisma and deity guide your attacks",
@@ -511,9 +518,9 @@ const character_settings = {
         "type": "bool",
         "default": false
     },
-    "paladin-invincible-conqueror": {
-        "title": "Paladin: Oath of Conquest: Invincible Conqueror",
-        "description": "You can harness extraordinary martial prowess for 1 minute.",
+    "ranger-favored-foe": {
+        "title": "Ranger: Favored Foe",
+        "description": "You mark an enemy and your attacks hurt them to an increased degree",
         "type": "bool",
         "default": false
     },
@@ -549,7 +556,7 @@ const character_settings = {
     },
     "ranger-gathered-swarm": {
         "title": "Ranger: Swarmkeeper: Gathered Swarm",
-        "description": "Use your Gathered Swarm ability to add extra Force damage to your weapon attacks",
+        "description": "Use your Gathered Swarm ability to add extra Force damage to your attacks",
         "type": "bool",
         "default": false
     },
@@ -560,7 +567,7 @@ const character_settings = {
         "default": true
     },
     "rogue-assassinate": {
-        "title": "Rogue: Assassin: Assassinate surprise attack (Apply to next roll only)",
+        "title": "Rogue: Assassin: Assassinate Surprise Attack (Apply to next roll only)",
         "description": "Roll with advantage and roll critical damage dice",
         "type": "bool",
         "default": false
@@ -571,15 +578,21 @@ const character_settings = {
         "type": "bool",
         "default": false
     },
-    "warlock-hexblade-curse": {
-        "title": "Warlock: The Hexblade: Hexblade's Curse",
-        "description": "Apply the Hexblade's Curse extra damage on attack rolls and score critical hits on rolls of 19 and 20",
-        "type": "bool",
-        "default": false
-    },
     "eldritch-invocation-lifedrinker": {
         "title": "Warlock: Eldritch Invocation: Lifedrinker",
         "description": "Your pact weapon drips with necrotic energy, lending extra damage to your strikes",
+        "type": "bool",
+        "default": false
+    },
+    "genies-vessel": {
+        "title": "Warlock: The Genie: Genie's Wrath",
+        "description": "You genie patron lends their wrath to your attacks.",
+        "type": "bool",
+        "default": true
+    },
+    "warlock-hexblade-curse": {
+        "title": "Warlock: The Hexblade: Hexblade's Curse",
+        "description": "Apply the Hexblade's Curse extra damage on attack rolls and score critical hits on rolls of 19 and 20",
         "type": "bool",
         "default": false
     },
@@ -589,15 +602,27 @@ const character_settings = {
         "type": "bool",
         "default": false
     },
-    "sharpshooter": {
-        "title": "Feat: Sharpshooter (Apply to next roll only)",
-        "description": "Apply Sharpshooter -5 penalty to roll and +10 to damage",
+    "empowered-evocation": {
+        "title": "Wizard: Evocation Wizard: Empowered Evocation",
+        "description": "Your prowess in Evocation lends power to your Evocation spells",
+        "type": "bool",
+        "default": true
+    },
+    "charger-feat": {
+        "title": "Feat: Charger Extra Damage (Apply to next roll only)",
+        "description": "You charge into battle, lending weight to your blow!",
         "type": "bool",
         "default": false
     },
     "great-weapon-master": {
         "title": "Feat: Great Weapon Master (Apply to next roll only)",
         "description": "Apply Great Weapon Master -5 penalty to roll and +10 to damage",
+        "type": "bool",
+        "default": false
+    },
+    "sharpshooter": {
+        "title": "Feat: Sharpshooter (Apply to next roll only)",
+        "description": "Apply Sharpshooter -5 penalty to roll and +10 to damage",
         "type": "bool",
         "default": false
     },
@@ -608,25 +633,13 @@ const character_settings = {
         "default": true
     },
     "protector-aasimar-radiant-soul": {
-        "title": "Protector Aasimar: Radiant Soul",
+        "title": "Aasimar: Protector: Radiant Soul",
         "description": "Unleash your divine soul to deal extra radiant damage equal to your level.",
         "type": "bool",
         "default": false
     },
-    "charger-feat": {
-        "title": "Charger Feat - Extra Damage (Apply to next roll only)",
-        "description": "You charge into battle, lending weight to your blow!",
-        "type": "bool",
-        "default": false
-    },
-    "genies-vessel": {
-        "title": "Genie's Vessel: Genie's Wrath - Extra Damage",
-        "description": "You genie patron lends their wrath to your attacks.",
-        "type": "bool",
-        "default": true
-    },
     "halfling-lucky": {
-        "title": "Halfling Lucky",
+        "title": "Halfling: Lucky",
         "description": "The luck of your people guides your steps",
         "type": "bool",
         "default": true
@@ -1229,11 +1242,11 @@ function getDiscordChannel(settings, character) {
 }
 
 let key_bindings = {
-    LeftShift: "advantage",
-    LeftControl: "disadvantage",
-    RightShift: "super_advantage",
-    RightControl: "super_disadvantage",
-    LeftAlt: "normal_roll"
+    ShiftLeft: "advantage",
+    ControlLeft: "disadvantage",
+    ShiftRight: "super_advantage",
+    ControlRight: "super_disadvantage",
+    AltLeft: "normal_roll"
 };
 
 const BINDING_NAMES = {
@@ -1259,6 +1272,11 @@ const BINDING_NAMES = {
     custom_sub_d10: "Custom modifier: - 1d10",
     custom_add_d12: "Custom modifier: + 1d12",
     custom_sub_d12: "Custom modifier: - 1d12",
+    custom_add_damage_d4: "Custom damage: + 1d4",
+    custom_add_damage_d6: "Custom damage: + 1d6",
+    custom_add_damage_d8: "Custom damage: + 1d8",
+    custom_add_damage_d10: "Custom damage: + 1d10",
+    custom_add_damage_d12: "Custom damage: + 1d12"
 }
 
 function configureHotKey(bindings, bindings_div, html, key) {
@@ -1356,10 +1374,7 @@ function addHotKeyToUI(bindings, bindings_div, key) {
         <div style="border-bottom: 1px grey solid; display: flex; justify-content: space-between;">
             <div class="hotkey-event" style="cursor: pointer; flex-shrink: 1; padding: 5px; font-weight: bold;">${keyName}</div>
             <div class="hotkey-action" style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; text-align: center; padding: 5px; flex-grow: 1;">${binding_name}</div>
-            <i class="icon marka marka-set marka-icon-times delete-hotkey" style="width:15px;height:15px; margin: 5px; flex-shrink: 1;">
-                <i style="background-color:rgb(0, 0, 0)"></i>
-                <i style="background-color:rgb(0, 0, 0)"></i>
-            </i>
+            <span class="delete-hotkey" style="width:15px; height:15px; padding: 3px; flex-shrink: 1;font-weight: 900; font-size: medium;">X</span>
         </div>
     `);
     html.find(".delete-hotkey").click(ev => {
@@ -1377,16 +1392,11 @@ function addHotKeyToUI(bindings, bindings_div, key) {
     return html;
 }
 
-function openHotkeyManager(button) {
-    console.log("Hotkeys manager");
-    let bindings = null;
-    try {
-        bindings = JSON.parse(button.attr("data-bindings"));
-    } catch (err) {}
+async function promptHotkeyManager(bindings) {
     // Use defaults if value is invalid or never set
     if (!bindings)
         bindings = {...key_bindings};
-
+    console.log("Hotkeys manager");
     const manager = $(`
     <div class="hotkeys-manager">
         <div class="key-bindings">
@@ -1420,12 +1430,24 @@ function openHotkeyManager(button) {
         configureHotKey(bindings, bindings_div, html, null)
     });
 
-    alertify.confirm('Beyond20 Hotkey Manager', manager[0], () => {
-        delete bindings[null];
-        button.attr("data-bindings", JSON.stringify(bindings));
-        button.trigger("change");
-    }, () => {});
+    return new Promise(resolve => {
+        alertify.confirm('Beyond20 Hotkey Manager', manager[0], () => {
+            delete bindings[null];
+            resolve(bindings);
+        }, () => {});
+    });
+}
 
+function openHotkeyManager(button) {
+    let bindings = null;
+    try {
+        bindings = JSON.parse(button.attr("data-bindings"));
+    } catch (err) {}
+
+    promptHotkeyManager(bindings).then(new_bindings => {
+        button.attr("data-bindings", JSON.stringify(new_bindings));
+        button.trigger("change");
+    });
 }
 function createHotkeysSetting(name, short) {
     const opt = options_list[name];
